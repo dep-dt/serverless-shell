@@ -2,6 +2,8 @@
 
 Here are some light instructions on how to set up your local environment for `serverless`.
 
+## Serverless configuration
+
 1. Install awscli
 
 ```
