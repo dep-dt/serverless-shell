@@ -1,7 +1,7 @@
 {
-  "name": "appshell",
+  "name": "serverless-shell",
   "version": "1.0.0",
-  "description": "Lightweight Application Structure",
+  "description": "Lightweight Serverless Structure",
   "main": "server.js",
   "directories": {
     "test": "tests"
@@ -10,7 +10,6 @@
     "test": "mocha --recursive tests/**/*.js",
     "start": "node application/server.js"
   },
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.8.0",
