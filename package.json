@@ -8,7 +8,10 @@
   },
   "scripts": {
     "test": "mocha --recursive tests/**/*.js",
-    "start": "node application/server.js"
+    "start": "npx serverless localhost",
+    "deploy-dev": "NODE_ENV=dev serverless deploy --stage dev",
+    "deploy-test": "NODE_ENV=test serverless deploy --stage test",
+    "deploy-prod": "NODE_ENV=prod serverless deploy --stage prod"
   },
   "license": "ISC",
   "devDependencies": {

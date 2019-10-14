@@ -19,7 +19,7 @@
     "GraphqlLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/apollo-lambda-dev-graphql"
+        "LogGroupName": "/aws/lambda/apollo-lambda-test-graphql"
       }
     },
     "IamRoleLambdaExecution": {
@@ -47,7 +47,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "dev",
+                  "test",
                   "apollo-lambda",
                   "lambda"
                 ]
@@ -63,7 +63,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/apollo-lambda-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/apollo-lambda-test*:*"
                     }
                   ]
                 },
@@ -74,7 +74,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/apollo-lambda-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/apollo-lambda-test*:*:*"
                     }
                   ]
                 }
@@ -88,7 +88,7 @@
             "-",
             [
               "apollo-lambda",
-              "dev",
+              "test",
               {
                 "Ref": "AWS::Region"
               },
@@ -105,9 +105,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/apollo-lambda/dev/1571078438220-2019-10-14T18:40:38.220Z/apollo-lambda.zip"
+          "S3Key": "serverless/apollo-lambda/test/1571079940688-2019-10-14T19:05:40.688Z/apollo-lambda.zip"
         },
-        "FunctionName": "apollo-lambda-dev-graphql",
+        "FunctionName": "apollo-lambda-test-graphql",
         "Handler": "src/graphql.graphqlHandler",
         "MemorySize": 1024,
         "Role": {
@@ -117,27 +117,32 @@
           ]
         },
         "Runtime": "nodejs8.10",
-        "Timeout": 6
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "NODE_ENV": "test"
+          }
+        }
       },
       "DependsOn": [
         "GraphqlLogGroup",
         "IamRoleLambdaExecution"
       ]
     },
-    "GraphqlLambdaVersion1pbinA1NawnqMnC37MovQosVJyRQCma9zw4zl7mAEY": {
+    "GraphqlLambdaVersion3B6Ks7tXu4tLqGyBc2H0VazfjUHfhngsjUBNgeHdqw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GraphqlLambdaFunction"
         },
-        "CodeSha256": "4UkhgAsYclf+0ThWixroMuHPpkSdaMWnW7vWknR2MD0="
+        "CodeSha256": "Ac4VlgXqU4z2fz6W36dFU13iSx3nQxvfab/yIbnegQo="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-apollo-lambda",
+        "Name": "test-apollo-lambda",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -293,13 +298,13 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1571078429683": {
+    "ApiGatewayDeployment1571079932088": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         },
-        "StageName": "dev"
+        "StageName": "test"
       },
       "DependsOn": [
         "ApiGatewayMethodGraphqlOptions",
@@ -354,7 +359,7 @@
     "GraphqlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GraphqlLambdaVersion1pbinA1NawnqMnC37MovQosVJyRQCma9zw4zl7mAEY"
+        "Ref": "GraphqlLambdaVersion3B6Ks7tXu4tLqGyBc2H0VazfjUHfhngsjUBNgeHdqw"
       }
     },
     "ServiceEndpoint": {
@@ -375,7 +380,7 @@
             {
               "Ref": "AWS::URLSuffix"
             },
-            "/dev"
+            "/test"
           ]
         ]
       }
