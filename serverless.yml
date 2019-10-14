@@ -1,12 +1,17 @@
 # serverless.yml
 
 service: apollo-lambda
+
 provider:
   name: aws
   runtime: nodejs8.10
   environment:
     # one of 'prod', 'test', or 'dev' (default)
     NODE_ENV: ${opt:stage, 'dev'}
+
+plugins:
+  - serverless-offline
+
 functions:
   graphql:
     # this is formatted as <FILENAME>.<HANDLER>
