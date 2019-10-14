@@ -17,7 +17,3 @@ functions:
         path: graphql
         method: get
         cors: true
-    - http:
-        path: playground
-        method: '*'
-        cors: true
