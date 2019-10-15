@@ -4,7 +4,11 @@ Here are some instructions on how to set up, develop, and deploy Atlas GraphQL. 
 
 ## Atlas GraphQL Setup
 
-After you clone the repository, `yarn install` to set up necessary dependencies.
+After you clone the repository, set up necessary dependencies:
+
+```
+yarn install
+```
 
 Then install `serverless` which enables both command-line deployment and localhost development:
 
