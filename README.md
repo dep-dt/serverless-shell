@@ -1,10 +1,30 @@
 # README
 
-Here are some light instructions on how to set up your local environment for `serverless`.
+Here are some instructions on how to set up, develop, and deploy Atlas GraphQL. Feel free to swap out `yarn` with `npm` for any of the below commands.
 
-## Serverless configuration
+## Atlas GraphQL Setup
 
-1. Install awscli
+After you clone the repository, `yarn install` to set up necessary dependencies.
+
+Then install `serverless` which enables both command-line deployment and localhost development:
+
+```
+yarn install -g serverless
+```
+
+## Localhost Development
+
+```
+yarn start
+```
+
+You should then be able to access `http://localhost:3001/graphql`
+
+## Deployment
+
+Deployment involves dispatching the server to an AWS Lambda instance.
+
+1. First, install `awscli`
 
 ```
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
@@ -16,54 +36,24 @@ sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
 https://dialogtech.atlassian.net/wiki/spaces/OPS/pages/180715521/Okta+AWS+Programmatic+Access+Howto
 
-Then run `awscli` and authenticate
+Then run `awscli` and authenticate.
 
-3. Install `serverless`
+Once you've completed those steps, you can deploy to one of the following environments:
 
-```
-npm install -g serverless
-```
-
-4. Deploy
-
-After configuring the Serverless Framework, all you have to do to deploy is run `serverless deploy`
-
-If successful, serverless should output something similar to this example:
+### secure-dev
 
 ```
-> serverless deploy
-Serverless: Packaging service...
-Serverless: Excluding development dependencies...
-Serverless: Uploading CloudFormation file to S3...
-Serverless: Uploading artifacts...
-Serverless: Uploading service .zip file to S3 (27.07 MB)...
-Serverless: Validating template...
-Serverless: Updating Stack...
-Serverless: Checking Stack update progress...
-..............
-Serverless: Stack update finished...
-Service Information
-service: apollo-lambda
-stage: dev
-region: us-east-1
-stack: apollo-lambda-dev
-api keys:
-  None
-endpoints:
-  POST - https://ujt89xxyn3.execute-api.us-east-1.amazonaws.com/dev/graphql
-  GET - https://ujt89xxyn3.execute-api.us-east-1.amazonaws.com/dev/graphql
-functions:
-  graphql: apollo-lambda-dev-graphql
+yarn deploy-dev
 ```
 
-## What does serverless do?
+### secure-test
 
-First, it builds the functions, zips up the artifacts, and uploads the artifacts to a new S3 bucket. Then, it creates a Lambda function with those artifacts, and if successful, outputs the HTTP endpoint URLs to the console.
+```
+yarn deploy-test
+```
 
-The resulting S3 buckets and Lambda functions can be viewed and managed after logging in to the AWS Console.
+### prod
 
-## Managing the resulting services
-
-To find the created S3 bucket, `apollo-lambda-dev-*`
-
-To find the created Lambda function, search AWS for the listed services for `Lambda`. If the list of Lambda functions is empty, or missing the newly created function, double check the region at the top right of the screen. The default region for Serverless deployments is us-east-1 (N. Virginia)
+```
+yarn deploy-prod
+```

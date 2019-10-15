@@ -1,8 +1,9 @@
 {
-  "name": "serverless-shell",
+  "name": "atlas-graphql",
   "version": "1.0.0",
-  "description": "Lightweight Serverless Structure",
+  "description": "The Atlas GraphQL Repository",
   "main": "graphql.js",
+  "license": "ISC",
   "directories": {
     "test": "tests"
   },
@@ -13,20 +14,15 @@
     "deploy-test": "NODE_ENV=test serverless deploy --stage test",
     "deploy-prod": "NODE_ENV=prod serverless deploy --stage prod"
   },
-  "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.8.0",
-    "chai": "^3.5.0",
-    "eslint": "^2.9.0",
-    "jasmine-node": "^1.14.5",
-    "mocha": "^2.4.5",
+    "eslint": "^6.5.1",
+    "jasmine-node": "^3.0.0",
+    "mocha": "^6.2.1",
     "serverless-offline": "^5.12.0"
   },
   "dependencies": {
     "apollo-datasource-rest": "^0.6.5",
     "apollo-server-lambda": "^2.9.6",
-    "express": "^4.13.4",
-    "graphql": "^14.5.8",
-    "request": "^2.72.0"
+    "graphql": "^14.5.8"
   }
 }
