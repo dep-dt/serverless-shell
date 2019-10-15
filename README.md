@@ -24,7 +24,7 @@ You should then be able to access `http://localhost:3001/graphql`
 
 Deployment involves dispatching the server to an AWS Lambda instance.
 
-1. First, install `awscli`
+First, install `awscli`:
 
 ```
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
@@ -32,7 +32,7 @@ unzip awscli-bundle.zip
 sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 ```
 
-2. Run through these instructions to set up `awscli` authentication with Okta:
+Run through these instructions to set up `awscli` authentication with Okta:
 
 https://dialogtech.atlassian.net/wiki/spaces/OPS/pages/180715521/Okta+AWS+Programmatic+Access+Howto
 
