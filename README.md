@@ -32,11 +32,9 @@ unzip awscli-bundle.zip
 sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 ```
 
-Run through these instructions to set up `awscli` authentication with Okta:
+Run through [these instructions to set up `awscli` authentication with Okta](https://dialogtech.atlassian.net/wiki/spaces/OPS/pages/180715521/Okta+AWS+Programmatic+Access+Howto).
 
-https://dialogtech.atlassian.net/wiki/spaces/OPS/pages/180715521/Okta+AWS+Programmatic+Access+Howto
-
-Then run `awscli` and authenticate.
+Then run `awscli` and authenticate with Okta.
 
 Once you've completed those steps, you can deploy to one of the following environments:
 
@@ -57,3 +55,7 @@ yarn deploy-test
 ```
 yarn deploy-prod
 ```
+
+### Troubleshooting
+
+If you receive the error "The security token included in the request is expired", run `awscli` again to re-authenticate to Okta and then retry your deploy.
