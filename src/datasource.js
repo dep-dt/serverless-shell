@@ -1,20 +1,22 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
-const { API } = require('./server.js');
 
-const ACCESS_KEY =
-  '608c9dd21e2314fe5b214699cb877cf00f5c5f9759d11620ed3c7ffa0c2f0f3f';
-
-const SECRET_KEY =
-  'f7b41f8cd752922706198ff1d35215c874f036a4957ce290513ad7eac5d5c233';
+const API_URL =
+  process.env.NODE_ENV === 'dev'
+    ? 'http://api-dev.ifbyphone.com/v1/'
+    : process.env.NODE_ENV === 'test'
+    ? 'http://api-test.ifbyphone.com/v1/'
+    : process.env.NODE_ENV === 'prod'
+    ? 'https://api.ifbyphone.com/v1/'
+    : 'http://api.ifbyphone.local/v1';
 
 class OrganicAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = API;
+    this.baseURL = API_URL;
   }
 
   willSendRequest(request) {
-    request.headers.set('Cookie', 'IFBYPHONE=1r8idelqsfrtodkmgp7hcc3qf0');
+    request.headers.set('Cookie', 'IFBYPHONE=q5eh6fgq0hs3i5jvhhqmr482g0');
   }
 
   async getRegisteredNumbers() {

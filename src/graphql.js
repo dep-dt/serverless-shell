@@ -1,21 +1,10 @@
-// graphql.js
 const { OrganicAPI } = require('./datasource.js');
 const { ApolloServer, gql } = require('apollo-server-lambda');
+const { resolvers } = require('./resolvers.js');
+const { schema } = require('./schema.js');
 
 // Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  type Query {
-    getRegisteredNumbers: String
-  }
-`;
-
-// Provide resolver functions for your schema fields
-const resolvers = {
-  Query: {
-    getRegisteredNumbers: (root, args, { dataSources }) =>
-      dataSources.organicAPI.getRegisteredNumbers(),
-  },
-};
+const typeDefs = schema;
 
 const server = new ApolloServer({
   typeDefs,
